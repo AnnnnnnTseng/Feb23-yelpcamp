@@ -80,4 +80,3 @@ module.exports.deleteCampground = async (req, res) => {
     req.flash('success', 'Campground deleted!')
     res.redirect('/campgrounds');
 }
-//123
