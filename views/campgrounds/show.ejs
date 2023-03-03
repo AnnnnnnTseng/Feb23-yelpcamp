@@ -3,6 +3,7 @@
 
     <div class="row">
         <div class="col-6">
+            <div id='map' style='width: 400px; height: 300px;'></div>
             <div id="campgroundCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <% campground.images.forEach((img, i)=> { %>
@@ -23,9 +24,6 @@
                     </a>
                     <% } %>
             </div>
-
-
-
 
             <div class="card mb-3">
                 <div class="card-body">
@@ -57,7 +55,6 @@
                             2 days ago
                         </div>
             </div>
-
         </div>
 
         <div class="col-6">
@@ -94,7 +91,6 @@
                 <% }%>
                     <% for(let review of campground.reviews) { %>
                         <div class="card card-body">
-
                             <div class="mb-3">
 
                                 <!-- <h5 class="card-title">
@@ -123,3 +119,9 @@
                         <% } %>
         </div>
     </div>
+
+
+    <script>
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>'; 
+    </script>
+    <script src="/javascripts/showPageMap.js"></script>
