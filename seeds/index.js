@@ -31,6 +31,10 @@ const seedDB = async () => {
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Welcomes you, your family, your friends and even your beloved pets to experience fresh air, woodlands, mountain streams, rolling surfs, wildflowers, star-studded skies, critters, crackling campfires and glowing marshmallows on a stick.',
             price,
+            geometry: {
+                type: 'Point',
+                coordinates: [-88.243093, 40.116484]
+            },
             images: [
                 {
                     url: 'https://res.cloudinary.com/dfyigb1ub/image/upload/v1677630764/YelpCamp/rnhscchjcbm1z4klxkfp.jpg',

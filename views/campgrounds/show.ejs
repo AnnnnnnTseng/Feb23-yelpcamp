@@ -8,7 +8,12 @@
                 <div class="carousel-inner">
                     <% campground.images.forEach((img, i)=> { %>
                         <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-                            <img src="<%= img.url%>" class="d-block w-100" alt="">
+                            <% if(campground.images.length) {%>
+                                <img src="<%= img.url%>" class="d-block w-100" alt="">
+                                <% } else {%>
+                                    <img src="https://res.cloudinary.com/dfyigb1ub/image/upload/v1677630764/YelpCamp/rnhscchjcbm1z4klxkfp.jpg"
+                                        class="d-block w-100" alt="">
+                                    <% } %>
                         </div>
                         <% }) %>
 
@@ -123,6 +128,3 @@
         const campground = <%- JSON.stringify(campground) %>;
     </script>
     <script src="/javascripts/showPageMap.js"></script>
-
-
-
