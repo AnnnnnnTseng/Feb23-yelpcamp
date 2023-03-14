@@ -93,9 +93,6 @@
                         <div class="card card-body">
                             <div class="mb-3">
 
-                                <!-- <h5 class="card-title">
-                                    Rating: <%=review.rating%>
-                                </h5> -->
                                 <h5 class="card-title">
                                     <%= review.author.username%>
                                 </h5>
@@ -122,6 +119,10 @@
 
 
     <script>
-        const mapToken = '<%-process.env.MAPBOX_TOKEN%>'; 
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const campground = <%- JSON.stringify(campground) %>;
     </script>
     <script src="/javascripts/showPageMap.js"></script>
+
+
+
