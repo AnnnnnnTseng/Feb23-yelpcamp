@@ -14,4 +14,4 @@ new mapboxgl.Marker()
                 `<h3>${campground.title}</h3><p>${campground.location}</p>`
             )
     )
-    .addTo(map) 
+    .addTo(map)     
