@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -15,7 +16,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const helmet = require('helmet');
-
+//const dbURL = process.env.DB_URL;
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
 const mongoSanitize = require('express-mongo-sanitize');
 
@@ -26,15 +28,15 @@ const userRoutes = require('./routes/users');
 const campgroundsRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews');
 
+const MongoDBStore = require("connect-mongo")(session);
+// // //??
+// const { Console } = require('console');
+// const { runInNewContext } = require('vm');
+// const ExpressMongoSanitize = require('express-mongo-sanitize');
 
-// //??
-const { Console } = require('console');
-const { runInNewContext } = require('vm');
-const ExpressMongoSanitize = require('express-mongo-sanitize');
 
 
-
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     //useCreateIndex: true,
     useUnifiedTopology: true,
@@ -63,8 +65,22 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 //防Mongo Injection
 app.use(mongoSanitize())
+
+
 //session for flashing msg
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on('error', function (e) {
+    console.log('session store error', e)
+})
+
 const sessionConfig = {
+    store,
     name: 'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
