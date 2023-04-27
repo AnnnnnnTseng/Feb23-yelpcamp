@@ -188,6 +188,7 @@ app.use((err, req, res, next) => {
 
 
 //localhost
-app.listen(3300, () => {
-    console.log('serving on port 3300')
+const port = process.env.PORT || 3300
+app.listen(port, () => {
+    console.log(`serving on port ${port}`)
 })
